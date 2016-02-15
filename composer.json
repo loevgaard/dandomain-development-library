@@ -1,0 +1,22 @@
+{
+    "name": "loevgaard/dandomain-development-library",
+    "description": "Library for developing Dandomain webshops. Assists in creating minified and optimized JS, CSS, and image files",
+    "minimum-stability": "dev",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joachim Løvgaard",
+            "email": "joachim@loevgaard.dk"
+        }
+    ],
+    "require": {
+        "koala-framework/file-watcher": "dev-master",
+        "symfony/yaml": "3.0.x-dev",
+        "symfony/console": "3.0.x-dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "": "src/"
+        }
+    }
+}

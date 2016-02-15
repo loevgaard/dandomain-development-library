@@ -1,0 +1,5 @@
+assets:
+    resources:
+        - assets
+remotes:
+    - { host: example.com, username: user, password: pass, port: 21 }
