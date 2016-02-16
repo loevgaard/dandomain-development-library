@@ -12,7 +12,10 @@
     "require": {
         "koala-framework/file-watcher": "dev-master",
         "symfony/yaml": "3.0.x-dev",
-        "symfony/console": "3.0.x-dev"
+        "symfony/console": "3.0.x-dev",
+        "components/jquery": "1.8.3",
+        "kwizer15/jquery-ui": "1.9.1",
+        "kriswallsmith/assetic": "^1.2"
     },
     "autoload": {
         "psr-4": {

@@ -38,7 +38,7 @@ class Application extends SymfonyApplication {
         $yaml = new Parser();
         $config = [];
         foreach($files as $file) {
-            $config = array_merge($config, $yaml->parse(file_get_contents($file)));
+            $config = array_replace_recursive($config, $yaml->parse(file_get_contents($file)));
         }
 
         $this->setConfig($config);

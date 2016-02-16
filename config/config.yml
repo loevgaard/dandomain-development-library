@@ -1,5 +1,16 @@
-assets:
-    resources:
-        - assets
-remotes:
-    - { host: example.com, username: user, password: pass, port: 21 }
+assetic:
+    filters:
+        less:
+            class: Assetic\Filter\LessFilter
+            arguments: [/usr/bin/nodejs, [/usr/local/lib/node_modules]]
+        uglifycss:
+            class: Assetic\Filter\UglifyCssFilter
+            arguments: [/usr/local/bin/uglifycss, /usr/bin/nodejs]
+        uglifyjs2:
+            class: Assetic\Filter\UglifyJs2Filter
+            arguments: [/usr/local/bin/uglifyjs, /usr/bin/nodejs]
+remote:
+    host: example.com
+    username: user
+    password: pass
+    port: 21

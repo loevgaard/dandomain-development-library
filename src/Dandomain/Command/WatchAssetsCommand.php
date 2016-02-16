@@ -1,6 +1,7 @@
 <?php
 namespace Dandomain\Command;
 
+use Dandomain\Asset\Handler;
 use Kwf\FileWatcher\Backend\BackendAbstract;
 use Kwf\FileWatcher\Event\Create;
 use Kwf\FileWatcher\Event\Modify;
@@ -21,23 +22,22 @@ class WatchAssetsCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $config = $this->getConfig();
+        $handler = new Handler($config);
 
-        $modification = function($e) {
-            print_r($this->getConfig());
-            echo "Modification\n";
-            var_dump($e->filename);
-            echo "\n\n";
+        $modification = function($e) use($handler) {
+            $handler->handleChange($e->filename);
         };
         $modification->bindTo($this);
 
+        $creation = function($e) use($handler) {
+            $handler->handleChange($e->filename);
+        };
+        $creation->bindTo($this);
+
         /** @var BackendAbstract $watcher */
-        $watcher = Watcher::create($config['assets']['resources']);
+        $watcher = Watcher::create($config['assets']['watches']);
         $watcher->addListener(Modify::NAME, $modification);
-        $watcher->addListener(Create::NAME, function($e) {
-            echo "Creation\n";
-            var_dump($e->filename);
-            echo "\n\n";
-        });
+        $watcher->addListener(Create::NAME, $creation);
         $watcher->start();
     }
 }
